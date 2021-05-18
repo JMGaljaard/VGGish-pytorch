@@ -4,7 +4,7 @@ it provides a script to load a Tensorflow `ckpt` file into the model.
 
 This repository was tested on Linux with Python 3.9.5, Pytorch 1.8 and Tensorflow 2.5.
 
-# TODO
+## TODO
 
  - [x] Write network conversion script: see [`convert.py`](convert.py)
  - [x] Write PCA (Postprocessing) conversion script: see [`convert.py`](convert.py)
@@ -18,9 +18,9 @@ This repository was tested on Linux with Python 3.9.5, Pytorch 1.8 and Tensorflo
  - [ ] Clean up code and documentation.
  - [ ] Extend `README.md`.
 
-# Pretrained models
+## Create models
 
-# Pytorch files
+## Pre-generated files
 You can download the models to the [`model`](models). These can then be directly loaded into the `VGGish` implementation.
 The model files are available on Google Drive.
  
@@ -45,8 +45,11 @@ vggish_pytorch.load_state_dict(torch.load("model/vggish_model.pt"))
 postprocessor.load_state_dict(torch.load("model/vggish_postprocess.pt"))
 ```
 
-## Generate files
-To generate the files yourself, first download the original tensorflow file as follows:
+### Generate from Checkpoint
+To generate the files yourself, first download the original Tensorflow checkpoint file as follows. In addition, download
+the PCA parameter files. Alternatively, in case you need to convert your own version of VGGish, you can change the 
+variables in [`convert.py`](convert.py) to point to your own files. Make sure that the layers have the same names
+as the original Tensorflow implementation.
 
 ```bash
 wget https://storage.googleapis.com/audioset/vggish_model.ckpt -O model/vggish_model.ckpt
@@ -58,7 +61,9 @@ Then run the `convert.py` script from the vggish_torch model as follows.
 ```bash
 python3 convert.py
 ```
-# Notes
+
+
+## Notes
 This repository does **not** provide code to train the VGGish, and was created to convert the 
 VGGish model used by BMT into Pytorch compatible code.
 
@@ -71,6 +76,10 @@ so the Pytorch network might give slightly different results.
 The code in [`vggish`](vggish) is adapted code from [Tensorflow models](https://github.com/tensorflow/models/blob/4079c5d9693142a406f6ff392d14e2034b5f496d/research/audioset/vggish/)
 with a few modifications to be compatible with Tensorflow 2.
 
-# LICENSE
+## Issues
+In case you run into something, open a new issue. (Or better yet, create a pull request!) 
+Depending on my availability, my response may be a bit delayed.
+
+## LICENSE
 
 Released under the Apache 2 license, see [LICENSE](LICENSE).
