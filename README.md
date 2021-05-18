@@ -20,6 +20,7 @@ This repository was tested on Linux with Python 3.9.5, Pytorch 1.8 and Tensorflo
 
 # Pretrained models
 
+# Pytorch files
 You can download the models to the [`model`](models). These can then be directly loaded into the `VGGish` implementation.
 The model files are available on Google Drive.
  
@@ -32,6 +33,7 @@ The model files are available on Google Drive.
 
 Effectively the loading is done as follows. You can also check [`adapted_smoketest.py`](adapted_smoketest.py)
 for a more complete example.
+
 ```python
 import torch
 from network.vggish import VGGish, Postprocessor
@@ -39,10 +41,19 @@ from network.vggish import VGGish, Postprocessor
 vggish_pytorch = VGGish()
 postprocessor = Postprocessor()
 
-vggish_pytorch.load_state_dict(torch.load("./model/vggish_model.pt"))
-postprocessor.load_state_dict(torch.load("./model/vggish_postprocess.pt"))
+vggish_pytorch.load_state_dict(torch.load("model/vggish_model.pt"))
+postprocessor.load_state_dict(torch.load("model/vggish_postprocess.pt"))
 ```
 
+## Generate files
+To generate the files yourself, first download the original tensorflow file as follows:
+
+```bash
+wget https://storage.googleapis.com/audioset/vggish_model.ckpt -O model/vggish_model.ckpt
+wget https://storage.googleapis.com/audioset/vggish_pca_params.npz -O model/vggish_pca_params.npz
+```
+
+Then run the `convert.py` script from the vggish_torch model
 # Notes
 This repository does **not** provide code to train the VGGish, and was created to convert the 
 VGGish model used by BMT into Pytorch compatible code.
@@ -52,6 +63,9 @@ As such, the conversion script relies on Tensorflows compat to run a session wit
 
 The results may deviate slightly, as Tensorflow and Pytorch use different optimization techniques, 
 so the Pytorch network might give slightly different results.
+
+The code in [`vggish`](vggish) is adapted code from [Tensorflow models](https://github.com/tensorflow/models/blob/4079c5d9693142a406f6ff392d14e2034b5f496d/research/audioset/vggish/)
+with a few modifications to be compatible with Tensorflow 2.
 
 # LICENSE
 

@@ -4,20 +4,16 @@ Assumes to be run from the directory <BMT_ROOT_DIR>/submodules/video_features
     TODO: fix imports
 """
 
-import sys
-
 import numpy as np
 import tensorflow.compat.v1 as tf
 import torch
 
-sys.path.insert(0, '..')
-
+import vggish.vggish_slim as vggish_slim
 from network.vggish import VGGish, Postprocessor
-from vggish.vggish_src import vggish_slim
 from utils.params_to_torch import numpy_to_post_process, set_layer
 
-checkpoint_path = '../vggish/checkpoints/vggish_model.ckpt'
-pca_params_path = '../vggish/checkpoints/vggish_pca_params.npz'
+checkpoint_path = 'model/vggish_model.ckpt'
+pca_params_path = 'model/vggish_pca_params.npz'
 
 model_dir = "model"
 # Load the model with default graph (is a tensorflow v1 version).

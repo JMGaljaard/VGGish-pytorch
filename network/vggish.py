@@ -1,7 +1,7 @@
 import collections
 import torch.nn
 
-from submodules.video_features.models.vggish_torch.network import vggish_params
+from vggish import vggish_params
 
 
 class VGGish(torch.nn.Module):

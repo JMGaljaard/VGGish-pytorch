@@ -35,12 +35,14 @@ from datetime import datetime
 import numpy as np
 import tensorflow.compat.v1 as tf
 import torch
+
+from network.vggish import VGGish, Postprocessor
+from vggish.vggish_input import waveform_to_examples
+
 torch.backends.cudnn.deterministic = True
 
-from submodules.video_features.models.vggish.vggish_src import vggish_params, vggish_slim, vggish_postprocess
-from submodules.video_features.models.vggish.vggish_src.vggish_input import waveform_to_examples
-from submodules.video_features.models.vggish_torch.network.vggish import VGGish, Postprocessor
-from submodules.video_features.models.vggish_torch.utils.params_to_torch import numpy_to_post_process
+from vggish import vggish_params, vggish_slim, vggish_postprocess
+
 
 print('\nTesting your install of VGGish\n')
 
@@ -91,7 +93,6 @@ with tf.Graph().as_default(), tf.Session() as sess:
 
 torch_post_process = Postprocessor()
 pca_params = np.load(pca_params_path)
-numpy_to_post_process(pca_params['pca_eigen_vectors'], pca_params['pca_means'], torch_post_process)
 torch_post_process.load_state_dict(torch.load("model/vggish_postprocess.pt"))
 
 pproc = vggish_postprocess.Postprocessor(pca_params_path)

@@ -186,5 +186,7 @@ tags
 [._]*.un~
 
 # End of https://www.toptal.com/developers/gitignore/api/python,vim,venv
-
+.idea
 **/*.pt
+**/*.ckpt
+**/*.npz
