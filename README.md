@@ -4,17 +4,18 @@ it provides a script to load a Tensorflow `ckpt` file into the model.
 
 This repository was tested on Linux with Python 3.9.5, Pytorch 1.8 and Tensorflow 2.5.
 # TODO
- -[x] Write network conversion script: see [`convert.py`](convert.py)
- -[x] Write PCA (Postprocessing) conversion script: see [`convert.py`](convert.py)
+
+ - [x] Write network conversion script: see [`convert.py`](convert.py)
+ - [x] Write PCA (Postprocessing) conversion script: see [`convert.py`](convert.py)
     * Note that this implements the conversion step as a `torch.nn.Linear` under the hood, by
     pre-calculating the biases using the PCA eigen-vector matrix and the PCA mean values.
- -[x] Write simple test: see [`adapted_smoketest.py`](adapted_smoketest.py).
+ - [x] Write simple test: see [`adapted_smoketest.py`](adapted_smoketest.py).
     * Note that this test does not check properties (such as mean and std.) of the output, but
     rather checks that the original Tensorflow gives approximatly the same results.
- -[ ] Create `Dockerfile` to convert checkpoint in case Tensorflows `compat` is dropped. 
- -[ ] Make drop in replacement for `process` function.
- -[ ] Clean up code and documentation.
- -[ ] Extend `README.md`.
+ - [ ] Create `Dockerfile` to convert checkpoint in case Tensorflows `compat` is dropped. 
+ - [ ] Make drop in replacement for `process` function.
+ - [ ] Clean up code and documentation.
+ - [ ] Extend `README.md`.
 
 
 # Notes
