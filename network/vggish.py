@@ -93,4 +93,3 @@ class Postprocessor(torch.nn.Module):
                  (vggish_params.QUANTIZE_MAX_VAL - vggish_params.QUANTIZE_MIN_VAL)))
         # - Change data type from float to uint8
         return quantized_embeddings.to(torch.uint8)
-

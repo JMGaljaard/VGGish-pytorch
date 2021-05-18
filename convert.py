@@ -1,9 +1,3 @@
-"""
-Assumes to be run from the directory <BMT_ROOT_DIR>/submodules/video_features
-
-    TODO: fix imports
-"""
-
 import numpy as np
 import tensorflow.compat.v1 as tf
 import torch
