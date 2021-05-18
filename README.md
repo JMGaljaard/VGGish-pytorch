@@ -53,7 +53,11 @@ wget https://storage.googleapis.com/audioset/vggish_model.ckpt -O model/vggish_m
 wget https://storage.googleapis.com/audioset/vggish_pca_params.npz -O model/vggish_pca_params.npz
 ```
 
-Then run the `convert.py` script from the vggish_torch model
+Then run the `convert.py` script from the vggish_torch model as follows.
+
+```bash
+python3 convert.py
+```
 # Notes
 This repository does **not** provide code to train the VGGish, and was created to convert the 
 VGGish model used by BMT into Pytorch compatible code.
