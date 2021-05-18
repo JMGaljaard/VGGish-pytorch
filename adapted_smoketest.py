@@ -31,7 +31,6 @@ from __future__ import print_function
 
 from datetime import datetime
 
-
 import numpy as np
 import tensorflow.compat.v1 as tf
 import torch
@@ -42,7 +41,6 @@ from vggish.vggish_input import waveform_to_examples
 torch.backends.cudnn.deterministic = True
 
 from vggish import vggish_params, vggish_slim, vggish_postprocess
-
 
 print('\nTesting your install of VGGish\n')
 

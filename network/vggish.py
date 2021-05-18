@@ -1,4 +1,5 @@
 import collections
+
 import torch.nn
 
 from vggish import vggish_params
@@ -58,7 +59,6 @@ class VGGish(torch.nn.Module):
                 ("vggish/fc2", torch.nn.Linear(in_features=4096, out_features=128)),
                 ("vggish/f2/relu", torch.nn.ReLU(inplace=True)),
             ]))
-
 
     def forward(self, x):
         # Perform feature extraction with CNN module, and change layout to make compatible with embedding layers.
