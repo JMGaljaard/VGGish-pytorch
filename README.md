@@ -20,10 +20,18 @@ This repository was tested on Linux with Python 3.9.5, Pytorch 1.8 and Tensorflo
 
 # Pretrained models
 
-The [`model`](model) directory contains the pre-trained weights that can be loaded into the `VGGish` implementation.
-Effectively this is rougly done as follows. You can also check [`adapted_smoketest.py`](adapted_smoketest.py)
-for a slightly more complete example.
+You can download the models to the [`model`](models). These can then be directly loaded into the `VGGish` implementation.
+The model files are available on Google Drive.
+ 
+ * model/vggish_postprocess.pt [link](https://drive.google.com/file/d/1NK2V5n5AMUdGftaCTnvJ2sLry0xzNa7v/view?usp=sharing)
+    * 66 KB 
+    * md5sum `c79bb5af1ba6711de57bf680a22b052e`
+ * model/vggish_model.pt [link](https://drive.google.com/file/d/1s4-n58ZClFJwVbnrO74qgn8leir8Dj4l/view?usp=sharing)
+    * 275 MB
+    * md5sum `d89a7384cf485a4039ad3fbb9a2612f3`
 
+Effectively the loading is done as follows. You can also check [`adapted_smoketest.py`](adapted_smoketest.py)
+for a more complete example.
 ```python
 import torch
 from network.vggish import VGGish, Postprocessor
