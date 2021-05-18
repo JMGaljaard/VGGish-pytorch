@@ -3,6 +3,7 @@ This repository provides a Pytorch implementation of the VGGish model architectu
 it provides a script to load a Tensorflow `ckpt` file into the model. 
 
 This repository was tested on Linux with Python 3.9.5, Pytorch 1.8 and Tensorflow 2.5.
+
 # TODO
 
  - [x] Write network conversion script: see [`convert.py`](convert.py)
@@ -17,6 +18,22 @@ This repository was tested on Linux with Python 3.9.5, Pytorch 1.8 and Tensorflo
  - [ ] Clean up code and documentation.
  - [ ] Extend `README.md`.
 
+# Pretrained models
+
+The [`model`](model) directory contains the pre-trained weights that can be loaded into the `VGGish` implementation.
+Effectively this is rougly done as follows. You can also check [`adapted_smoketest.py`](adapted_smoketest.py)
+for a slightly more complete example.
+
+```python
+import torch
+from network.vggish import VGGish, Postprocessor
+
+vggish_pytorch = VGGish()
+postprocessor = Postprocessor()
+
+vggish_pytorch.load_state_dict(torch.load("./model/vggish_model.pt"))
+postprocessor.load_state_dict(torch.load("./model/vggish_postprocess.pt"))
+```
 
 # Notes
 This repository does **not** provide code to train the VGGish, and was created to convert the 
