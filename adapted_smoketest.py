@@ -44,8 +44,8 @@ from vggish import vggish_params, vggish_slim, vggish_postprocess
 
 print('\nTesting your install of VGGish\n')
 
-checkpoint_path = '/home/jeroen/Documents/CSE/MSc/year/1/Q4/CS4245/repo/BMT/submodules/video_features/models/vggish/checkpoints/vggish_model.ckpt'
-pca_params_path = '/home/jeroen/Documents/CSE/MSc/year/1/Q4/CS4245/repo/BMT/submodules/video_features/models/vggish/checkpoints/vggish_pca_params.npz'
+checkpoint_path = '../vggish/checkpoints/vggish_model.ckpt'
+pca_params_path = '../vggish/checkpoints/vggish_pca_params.npz'
 
 # Relative tolerance of errors in mean and standard deviation of embeddings.
 rel_error = 0.1  # Up to 10%
@@ -91,7 +91,7 @@ with tf.Graph().as_default(), tf.Session() as sess:
 
 torch_post_process = Postprocessor()
 pca_params = np.load(pca_params_path)
-torch_post_process.load_state_dict(torch.load("model/vggish_postprocess.pt"))
+torch_post_process.load_state_dict(torch.load("model/vggish_pca_params.pt"))
 
 pproc = vggish_postprocess.Postprocessor(pca_params_path)
 time = datetime.now()

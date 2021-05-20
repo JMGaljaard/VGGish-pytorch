@@ -6,10 +6,10 @@ import vggish.vggish_slim as vggish_slim
 from network.vggish import VGGish, Postprocessor
 from utils.params_to_torch import numpy_to_post_process, set_layer
 
-checkpoint_path = 'model/vggish_model.ckpt'
-pca_params_path = 'model/vggish_pca_params.npz'
+checkpoint_path = 'checkpoints/vggish_model.ckpt'
+pca_params_path = 'checkpoints/vggish_pca_params.npz'
 
-model_dir = "model"
+model_dir = "checkpoints"
 # Load the model with default graph (is a tensorflow v1 version).
 with tf.Graph().as_default(), tf.Session() as sess:
     # Use implementation used by BMT authors
@@ -42,4 +42,4 @@ with tf.Graph().as_default(), tf.Session() as sess:
     numpy_to_post_process(pca_params['pca_eigen_vectors'], pca_params['pca_means'], torch_post_process)
 
     # Save the models to the save dir
-    torch.save(torch_post_process.state_dict(), f"{model_dir}/vggish_postprocess.pt")
+    torch.save(torch_post_process.state_dict(), f"{model_dir}/vggish_pca_params.pt")

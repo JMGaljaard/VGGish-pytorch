@@ -19,7 +19,7 @@ import numpy as np
 import resampy
 import soundfile as sf
 
-from vggish import mel_features, vggish_params
+from models.vggish_torch.vggish import mel_features, vggish_params
 
 
 def waveform_to_examples(data, sample_rate):

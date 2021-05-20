@@ -16,7 +16,7 @@ def tensor_mapper(pre_trained: np.array) -> torch.Tensor:
     return tensor
 
 
-def set_layer(name, pre_trained, model: VGGish):
+def set_layer(name, pre_trained, model: VGGish) -> None:
     """
     Utility function that sets the models layer with the pre-trained (Tensorflow) weights.
     """
@@ -36,7 +36,7 @@ def set_layer(name, pre_trained, model: VGGish):
         module.weight = torch.nn.Parameter(tensor, requires_grad=False).float()
 
 
-def numpy_to_post_process(pca_matrix, pca_means, model: Postprocessor):
+def numpy_to_post_process(pca_matrix, pca_means, model: Postprocessor) -> None:
     """
     # Note that we can 'pre-compute' the effect of subtracting the means, as a layer effectively
     # implements a linear system of equations (i.e. a matrix multiplication). (More precisely,

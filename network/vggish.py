@@ -2,8 +2,7 @@ import collections
 
 import torch.nn
 
-from vggish import vggish_params
-
+from models.vggish_torch.vggish import vggish_params
 
 class VGGish(torch.nn.Module):
     def __init__(self):
@@ -75,7 +74,7 @@ class Postprocessor(torch.nn.Module):
         # Initialize as layer. Originally 128 * 128
         self.layer = torch.nn.Linear(vggish_params.EMBEDDING_SIZE, vggish_params.EMBEDDING_SIZE)
 
-    def forward(self, embeddings_batch):
+    def forward(self, embeddings_batch) -> torch.Tensor:
         # Perform projection onto PCA vectors.
         embeddings_batch = self.layer(embeddings_batch)
 
