@@ -42,7 +42,7 @@ class ExtractVGGish(torch.nn.Module):
         for idx in indices:
             # when error occurs might fail silently when run from torch data parallel
             try:
-                self.extract(idx, device=indices.device)
+                self.extract(indices.device, idx)
             except KeyboardInterrupt:
                 raise KeyboardInterrupt
             except Exception as e:
@@ -53,13 +53,13 @@ class ExtractVGGish(torch.nn.Module):
             # update tqdm progress bar
             self.progress.update()
 
-    def extract(self, idx: int, video_path: Union[str, None] = None, device='cpu') -> torch.Tensor:
+    def extract(self, device: torch.device, idx: int, video_path: Union[str, None] = None) -> torch.Tensor:
         '''The extraction call. Made to clean the forward call a bit.
 
         Args:
             idx (int): index to self.path_list
-            tf_session (tensorflow.python.client.session.Session): tf session
             video_path (Union[str, None], optional): . Defaults to None.
+            device {torch.device}
 
         Keyword Arguments:
             video_path {Union[str, None]} -- if you would like to use import it and use it as
@@ -73,10 +73,12 @@ class ExtractVGGish(torch.nn.Module):
             video_path = self.path_list[idx]
         audio_wav_path, audio_aac_path = extract_wav_from_mp4(video_path, self.tmp_path)
 
+
         # Load Numpy data into tensor, first cast as float32, and move to device. Afterwards unsqueeze to match input
         # dimensions
+        input_tensor = vggish_input.wavfile_to_examples(audio_wav_path).astype('float32', casting='same_kind')
         examples_batch = torch \
-            .from_numpy(vggish_input.wavfile_to_examples(audio_wav_path).astype('float32', casting='same_kind')) \
+            .from_numpy(input_tensor) \
             .to(device) \
             .unsqueeze(1)
 
